@@ -30,14 +30,15 @@ resource aws_s3_bucket logging_bucket {
   }
 
   grant {
-    id = local.cloudfront_canoncial_user_id
+    id = local.cloudfront_canonical_user_id
     permissions = [
       "FULL_CONTROL"
     ]
     type = "CanonicalUser"
   }
 }
-//resource aws_s3_bucket recording_bucket {
-//  bucket = "my-tf-test-bucket"
-//  acl    = "private"
-//}
+
+resource aws_s3_bucket recording_bucket {
+    bucket = "${lower(var.media_store_container_name)}-stream-recordings"
+    force_destroy = false
+}
