@@ -7,8 +7,8 @@ resource aws_cloudfront_distribution cloudfront_distribution {
     allowed_methods        = ["GET", "HEAD"]
     cached_methods         = ["GET", "HEAD"]
     min_ttl                = 0
-    default_ttl            = 86400
-    max_ttl                = 31536000
+    default_ttl            = 0
+    max_ttl                = 0
     target_origin_id       = var.media_store_origin_id
     viewer_protocol_policy = "redirect-to-https"
 
@@ -16,16 +16,8 @@ resource aws_cloudfront_distribution cloudfront_distribution {
       cookies {
         forward = "none"
       }
-      headers = [
-        "origin",
-      ]
-      query_string = true
-      query_string_cache_keys = [
-        "aws.manifestfilter",
-        "end",
-        "m",
-        "start",
-      ]
+      headers = []
+      query_string = false
     }
   }
 
