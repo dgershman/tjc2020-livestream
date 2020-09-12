@@ -1,1 +1,1 @@
-// trigger start and stop of medialive channel
+// TODO: stream start/stop
