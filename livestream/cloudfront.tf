@@ -1,6 +1,6 @@
 resource aws_cloudfront_distribution cloudfront_distribution {
   enabled = true
-  aliases = var.livestream_cnames
+  aliases = ["${var.livestream_subdomain}.${var.livestream_domain}"]
   is_ipv6_enabled = true
 
   default_cache_behavior {
@@ -46,7 +46,7 @@ resource aws_cloudfront_distribution cloudfront_distribution {
   }
 
   viewer_certificate {
-    acm_certificate_arn            = "arn:aws:acm:us-east-1:846656992549:certificate/bf90b147-f940-45e1-aad1-caf192699df4"
+    acm_certificate_arn            = aws_acm_certificate.certificate.arn
     cloudfront_default_certificate = false
     minimum_protocol_version       = "TLSv1.2_2019"
     ssl_support_method             = "sni-only"
