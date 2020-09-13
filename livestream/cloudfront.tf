@@ -22,7 +22,7 @@ resource aws_cloudfront_distribution cloudfront_distribution {
   }
 
   logging_config {
-    bucket          = "livestreaming-logsbucket-1cissxwnrclx8.s3.amazonaws.com"
+    bucket          = aws_s3_bucket.logging_bucket.bucket_domain_name
     include_cookies = false
     prefix          = "cloudfront"
   }
