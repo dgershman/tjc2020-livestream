@@ -1,6 +1,6 @@
 resource aws_cloudfront_distribution cloudfront_distribution {
-  enabled = true
-  aliases = ["${var.livestream_subdomain}.${var.livestream_domain}"]
+  enabled         = true
+  aliases         = ["${var.livestream_subdomain}.${var.livestream_domain}"]
   is_ipv6_enabled = true
 
   default_cache_behavior {
@@ -16,7 +16,7 @@ resource aws_cloudfront_distribution cloudfront_distribution {
       cookies {
         forward = "none"
       }
-      headers = []
+      headers      = []
       query_string = false
     }
   }

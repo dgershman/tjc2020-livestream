@@ -7,7 +7,7 @@ resource aws_media_store_container media_store_container {
 
 resource aws_media_store_container_policy media_store_container_policy {
   container_name = aws_media_store_container.media_store_container.name
-  policy = <<EOF
+  policy         = <<EOF
 {
   "Version": "2012-10-17",
   "Statement": [

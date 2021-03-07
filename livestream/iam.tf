@@ -91,3 +91,62 @@ resource aws_iam_role_policy medialive_access_role_policy {
 }
 EOF
 }
+
+resource aws_iam_policy custodian_policy {
+  name   = "StreamingCustodianPolicy"
+  policy = data.aws_iam_policy_document.custodian_policy.json
+}
+
+data aws_iam_policy_document custodian_policy {
+  statement {
+    effect = "Allow"
+    actions = [
+      "s3:ListAllMyBuckets",
+      "s3:HeadBucket",
+    ]
+    resources = ["*"]
+  }
+
+  statement {
+    effect = "Allow"
+    actions = [
+      "s3:GetObject",
+    ]
+    resources = [
+      "${aws_s3_bucket.recording_bucket.arn}/*",
+    ]
+  }
+
+  statement {
+    effect = "Allow"
+    actions = [
+      "s3:ListBucket",
+    ]
+    resources = [
+      aws_s3_bucket.recording_bucket.arn,
+    ]
+  }
+
+  statement {
+    effect = "Allow"
+    actions = [
+      "medialive:ListChannels",
+    ]
+    resources = [
+      "*"
+    ]
+  }
+
+  statement {
+    effect = "Allow"
+    actions = [
+      "medialive:StartChannel",
+      "medialive:StopChannel",
+      "medialive:BatchStart",
+      "medialive:BatchStop",
+    ]
+    resources = [
+      "arn:aws:medialive:us-east-1:846656992549:*",
+    ]
+  }
+}

@@ -1,5 +1,5 @@
 resource aws_acm_certificate certificate {
-  domain_name = "*.${var.livestream_domain}"
+  domain_name       = "*.${var.livestream_domain}"
   validation_method = "DNS"
 }
 

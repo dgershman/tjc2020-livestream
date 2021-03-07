@@ -1,7 +1,7 @@
 //logging bucket
 
 resource aws_s3_bucket logging_bucket {
-  bucket = "livestreaming-logsbucket-1cissxwnrclx8"
+  bucket        = "livestreaming-logsbucket-1cissxwnrclx8"
   force_destroy = false
 
   server_side_encryption_configuration {
@@ -18,7 +18,7 @@ resource aws_s3_bucket logging_bucket {
       "WRITE"
     ]
     type = "Group"
-    uri = "http://acs.amazonaws.com/groups/s3/LogDelivery"
+    uri  = "http://acs.amazonaws.com/groups/s3/LogDelivery"
   }
 
   grant {
@@ -39,6 +39,6 @@ resource aws_s3_bucket logging_bucket {
 }
 
 resource aws_s3_bucket recording_bucket {
-    bucket = "${lower(var.media_store_container_name)}-stream-recordings"
-    force_destroy = false
+  bucket        = "${lower(var.media_store_container_name)}-stream-recordings"
+  force_destroy = false
 }
